@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plagiarism Detector Test</title>
+    <style>
+        body { font-family: Arial; padding: 40px; max-width: 600px; }
+        button { background: blue; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        #result { margin-top: 20px; padding: 20px; background: #f0f0f0; border-radius: 8px; display: none; }
+        .score { font-size: 32px; font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+    <h2>Plagiarism Detector Test</h2>
+    
+    <p>File 1 choose karo:</p>
+    <input type="file" id="file1" accept=".pdf,.docx,.txt">
+    
+    <p>File 2 choose karo:</p>
+    <input type="file" id="file2" accept=".pdf,.docx,.txt">
+    
+    <br><br>
+    <button onclick="checkPlagiarism()">Check Plagiarism</button>
+    
+    <div id="result">
+        <p>Similarity Score:</p>
+        <div class="score" id="score"></div>
+        <p id="verdict"></p>
+        <p id="files"></p>
+    </div>
+
+    <script>
+        async function checkPlagiarism() {
+            const file1 = document.getElementById('file1').files[0];
+            const file2 = document.getElementById('file2').files[0];
+            
+            if (!file1 || !file2) {
+                alert("Dono files choose karo!");
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('files', file1);
+            formData.append('files', file2);
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/compare', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('score').textContent = data.similarity_score + '%';
+                document.getElementById('verdict').textContent = 'Result: ' + data.result;
+                document.getElementById('files').textContent = data.file1 + ' vs ' + data.file2;
+                
+            } catch(error) {
+                alert("Error: " + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
