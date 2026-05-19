@@ -11,10 +11,6 @@ const css = `
 .brand-dot{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 18px rgba(2,132,199,.35)}
 .brand-name{font-size:25px;font-weight:bold;color:#0c4a6e;letter-spacing:-.3px;text-align:center}
 .brand-sub{font-size:13px;color:#7dd3fc;font-weight:500;margin-top:2px;text-align:center}
-.status-pill{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;border:1.5px solid #bae6fd;background:white;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
-.status-dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.status-text{font-size:13px;color:#0284c7;font-weight:600}
 
 .nav-tabs{display:flex;gap:8px;margin-bottom:2rem;background:white;padding:6px;border-radius:14px;border:1.5px solid #bae6fd;box-shadow:0 2px 8px rgba(2,132,199,.08)}
 .nav-tab{flex:1;padding:10px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;background:transparent;color:#7dd3fc}
@@ -61,7 +57,7 @@ const css = `
 .score-wrap{position:relative;width:220px;height:220px;margin:0 auto 1.25rem}
 .score-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .score-big{font-size:46px;font-weight:800;line-height:1}
-.score-tiny{font-size:14px;color:#05a0ea;margin-top:5px;font-weight:600}
+.score-tiny{font-size:14px;color:#7dd3fc;margin-top:5px;font-weight:600}
 .verdict{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:100px;font-size:15px;font-weight:700;margin-top:12px}
 .v-safe{background:#f0fdf4;color:#15803d;border:2px solid #86efac}
 .v-warn{background:#fffbeb;color:#b45309;border:2px solid #fde68a}
@@ -120,7 +116,6 @@ const css = `
 @media(max-width:768px){.wrap{padding:1.5rem 1rem}.shell{max-width:100%;padding-top:0.5rem}}
 @media(max-width:480px){.wrap{padding:1rem 0.75rem}.shell{width:100%;max-width:100%}}
 
-/* AUTH */
 .auth-wrap{background:linear-gradient(135deg,#0284c7 0%,#0ea5e9 50%,#38bdf8 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;font-family:'Inter',sans-serif}
 .auth-card{background:white;border-radius:24px;padding:2.5rem;width:100%;max-width:460px;box-shadow:0 20px 60px rgba(2,132,199,.3)}
 .auth-logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 1.25rem;box-shadow:0 6px 18px rgba(2,132,199,.4)}
@@ -132,17 +127,16 @@ const css = `
 .input-group{margin-bottom:1rem}
 .input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
 .input-label{font-size:13px;font-weight:600;color:#0c4a6e;margin-bottom:6px;display:block}
-.input-field{width:100%;padding:12px 14px;border:1.5px solid #007eb4da;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:#0c4a6e;outline:none;transition:all .2s;background:#f0f9ff}
+.input-field{width:100%;padding:12px 14px;border:1.5px solid #bae6fd;border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;color:#0c4a6e;outline:none;transition:all .2s;background:#f0f9ff}
 .input-field:focus{border-color:#0284c7;background:white;box-shadow:0 0 0 3px rgba(2,132,199,.1)}
-.input-field::placeholder{color:#d3d3d3}
+.input-field::placeholder{color:#bae6fd}
 .auth-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:white;margin-top:0.5rem;box-shadow:0 4px 16px rgba(2,132,199,.4);transition:all .2s}
 .auth-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 24px rgba(2,132,199,.5)}
 .auth-btn:active{transform:scale(.98)}
 .auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .auth-err{background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
 .auth-success{background:#f0fdf4;border:1.5px solid #86efac;color:#15803d;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
-.section-divider{font-size:12px;font-weight:700;color:#0684c6;text-transform:uppercase;letter-spacing:1px;margin:1rem 0 0.75rem;padding-bottom:6px;border-bottom:1.5px solid #e0f2fe}
-
+.section-divider{font-size:11px;font-weight:700;color:#bae6fd;text-transform:uppercase;letter-spacing:1px;margin:1rem 0 0.75rem;padding-bottom:6px;border-bottom:1.5px solid #e0f2fe}
 .topbar-right{display:flex;align-items:center;gap:10px;margin-left:auto}
 .user-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;border:1.5px solid #bae6fd;background:white;box-shadow:0 2px 6px rgba(0,0,0,.06)}
 .user-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:13px;color:white;font-weight:700}
@@ -166,7 +160,7 @@ function AuthPage({ onLogin }) {
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
   const handleLogin = async () => {
-    if (!form.username || !form.password) { setError("Enter username and password both !"); return }
+    if (!form.username || !form.password) { setError("Username aur password dono bharo!"); return }
     setLoading(true); setError("")
     try {
       const res = await fetch(`${API}/auth/login`, {
@@ -178,7 +172,6 @@ function AuthPage({ onLogin }) {
       if (!res.ok) { setError(data.detail); setLoading(false); return }
       localStorage.setItem("token", data.access_token)
       localStorage.setItem("username", data.username)
-      localStorage.setItem("full_name", data.full_name || data.username)
       onLogin(data.username, data.access_token)
     } catch { setError("Server se connect nahi ho pa raha!") }
     setLoading(false)
@@ -186,9 +179,9 @@ function AuthPage({ onLogin }) {
 
   const handleRegister = async () => {
     if (!form.firstName || !form.lastName || !form.contact || !form.username || !form.password) {
-      setError("please fill mandatory fields"); return
+      setError("Saare fields bharna zaroori hai!"); return
     }
-    if (form.password.length < 4) { setError("Password must be atleast 4 digits"); return }
+    if (form.password.length < 4) { setError("Password kam se kam 4 characters ka hona chahiye!"); return }
     setLoading(true); setError(""); setSuccess("")
     try {
       const res = await fetch(`${API}/auth/register`, {
@@ -204,7 +197,7 @@ function AuthPage({ onLogin }) {
       })
       const data = await res.json()
       if (!res.ok) { setError(data.detail); setLoading(false); return }
-      setSuccess("You are registered !")
+      setSuccess("Account ban gaya! Ab login karo. 🎉")
       setTab("login")
       setForm({ firstName: "", lastName: "", contact: "", username: "", password: "" })
     } catch { setError("Server se connect nahi ho pa raha!") }
@@ -217,29 +210,26 @@ function AuthPage({ onLogin }) {
         <div className="auth-logo">🔍</div>
         <div className="auth-title">Plagiarism Detector</div>
         <div className="auth-sub">AI-powered document similarity check</div>
-
         <div className="auth-tabs">
           <button className={`auth-tab ${tab === "login" ? "active" : ""}`}
             onClick={() => { setTab("login"); setError(""); setSuccess("") }}>🔑 Login</button>
           <button className={`auth-tab ${tab === "register" ? "active" : ""}`}
             onClick={() => { setTab("register"); setError(""); setSuccess("") }}>✨ Register</button>
         </div>
-
         {error && <div className="auth-err">❌ {error}</div>}
         {success && <div className="auth-success">✅ {success}</div>}
 
-        {/* LOGIN FORM */}
         {tab === "login" && (
           <>
             <div className="input-group">
               <label className="input-label">👤 Username</label>
-              <input className="input-field" placeholder="Enter username" value={form.username}
+              <input className="input-field" placeholder="Apna username likho" value={form.username}
                 onChange={(e) => set("username", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()} />
             </div>
             <div className="input-group">
               <label className="input-label">🔒 Password</label>
-              <input className="input-field" type="password" placeholder="Enter password" value={form.password}
+              <input className="input-field" type="password" placeholder="Apna password likho" value={form.password}
                 onChange={(e) => set("password", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()} />
             </div>
@@ -249,42 +239,40 @@ function AuthPage({ onLogin }) {
           </>
         )}
 
-        {/* REGISTER FORM */}
         {tab === "register" && (
           <>
             <div className="section-divider">Personal Info</div>
             <div className="input-row">
               <div>
                 <label className="input-label">👤 First Name</label>
-                <input className="input-field" placeholder="Enter First Name" value={form.firstName}
+                <input className="input-field" placeholder="John" value={form.firstName}
                   onChange={(e) => set("firstName", e.target.value)} />
               </div>
               <div>
                 <label className="input-label">👤 Last Name</label>
-                <input className="input-field" placeholder="Enter Last Name" value={form.lastName}
+                <input className="input-field" placeholder="Doe" value={form.lastName}
                   onChange={(e) => set("lastName", e.target.value)} />
               </div>
             </div>
             <div className="input-group">
               <label className="input-label">📱 Contact Number</label>
-              <input className="input-field" placeholder="Enter Contact No" value={form.contact}
+              <input className="input-field" placeholder="9876543210" value={form.contact}
                 onChange={(e) => set("contact", e.target.value)} />
             </div>
-
             <div className="section-divider">Account Info</div>
             <div className="input-group">
               <label className="input-label">🔖 Username</label>
-              <input className="input-field" placeholder="Set Username" value={form.username}
+              <input className="input-field" placeholder="apna username chuno" value={form.username}
                 onChange={(e) => set("username", e.target.value)} />
             </div>
             <div className="input-group">
               <label className="input-label">🔒 Password</label>
-              <input className="input-field" type="password" placeholder="Set Password" value={form.password}
+              <input className="input-field" type="password" placeholder="strong password likho" value={form.password}
                 onChange={(e) => set("password", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleRegister()} />
             </div>
             <button className="auth-btn" onClick={handleRegister} disabled={loading}>
-              {loading ? "Please wait..." : "Register now"}
+              {loading ? "Please wait..." : "✨ Account Banao"}
             </button>
           </>
         )}
@@ -358,7 +346,19 @@ function HistoryPage({ token }) {
     fetchHistory()
   }
 
-  useEffect(() => { fetchHistory() }, [])
+  // Fix: useEffect with async function inside
+  useEffect(() => {
+    const load = async () => {
+      setLoading(true)
+      try {
+        const res = await fetch(`${API}/history`, { headers: { Authorization: `Bearer ${token}` } })
+        const data = await res.json()
+        setHistory(data)
+      } catch { setHistory([]) }
+      setLoading(false)
+    }
+    load()
+  }, [token])
 
   return (
     <div>
@@ -411,14 +411,14 @@ export default function App() {
   const [scanMsg, setScanMsg] = useState("")
   const [error, setError] = useState("")
   const [step, setStep] = useState(1)
-  const [status, setStatus] = useState("Ready")
+  const [, setStatus] = useState("Ready")
 
   const getColor = (s) => s > 70 ? "#dc2626" : s > 40 ? "#b45309" : "#15803d"
-  const getDotColor = () => status === "Error" ? "#ef4444" : status === "Done" ? "#22c55e" : "#38bdf8"
 
   const handleLogin = (username, tok) => { setUser(username); setToken(tok) }
   const handleLogout = () => {
-    localStorage.removeItem("token"); localStorage.removeItem("username"); localStorage.removeItem("full_name")
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
     setUser(null); setToken(null)
   }
 
@@ -437,7 +437,7 @@ export default function App() {
       setProgress(100); setScanMsg("Complete!")
       setTimeout(() => { setResult(data); setLoading(false); setStep(3); setStatus("Done") }, 500)
     } catch {
-      setError("Cannot connect to backend. Make sure uvicorn is running on port 8000.")
+      setError("Cannot connect to backend. Make sure server is running.")
       setLoading(false); setProgress(0); setStep(1); setStatus("Error")
     }
   }
