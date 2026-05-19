@@ -181,7 +181,7 @@ function AuthPage({ onLogin }) {
     if (!form.firstName || !form.lastName || !form.contact || !form.username || !form.password) {
       setError("Saare fields bharna zaroori hai!"); return
     }
-    if (form.password.length < 4) { setError("Password kam se kam 4 characters ka hona chahiye!"); return }
+    if (form.password.length < 4) { setError("Password length should be atleast 4 character"); return }
     setLoading(true); setError(""); setSuccess("")
     try {
       const res = await fetch(`${API}/auth/register`, {
@@ -197,7 +197,7 @@ function AuthPage({ onLogin }) {
       })
       const data = await res.json()
       if (!res.ok) { setError(data.detail); setLoading(false); return }
-      setSuccess("Account ban gaya! Ab login karo. 🎉")
+      setSuccess("You are registred successfully please login")
       setTab("login")
       setForm({ firstName: "", lastName: "", contact: "", username: "", password: "" })
     } catch { setError("Server se connect nahi ho pa raha!") }
@@ -234,7 +234,7 @@ function AuthPage({ onLogin }) {
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()} />
             </div>
             <button className="auth-btn" onClick={handleLogin} disabled={loading}>
-              {loading ? "Please wait..." : "🚀 Login Karo"}
+              {loading ? "Please wait..." : " Login"}
             </button>
           </>
         )}
@@ -272,7 +272,7 @@ function AuthPage({ onLogin }) {
                 onKeyDown={(e) => e.key === "Enter" && handleRegister()} />
             </div>
             <button className="auth-btn" onClick={handleRegister} disabled={loading}>
-              {loading ? "Please wait..." : "✨ Account Banao"}
+              {loading ? "Please wait..." : " Register "}
             </button>
           </>
         )}
