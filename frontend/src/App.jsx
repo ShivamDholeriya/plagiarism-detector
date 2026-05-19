@@ -136,7 +136,7 @@ const css = `
 .auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .auth-err{background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
 .auth-success{background:#f0fdf4;border:1.5px solid #86efac;color:#15803d;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
-.section-divider{font-size:11px;font-weight:700;color:#bae6fd;text-transform:uppercase;letter-spacing:1px;margin:1rem 0 0.75rem;padding-bottom:6px;border-bottom:1.5px solid #e0f2fe}
+.section-divider{font-size:12px;font-weight:700;color:#0684c6;text-transform:uppercase;letter-spacing:1px;margin:1rem 0 0.75rem;padding-bottom:6px;border-bottom:1.5px solid #e0f2fe}
 .topbar-right{display:flex;align-items:center;gap:10px;margin-left:auto}
 .user-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;border:1.5px solid #bae6fd;background:white;box-shadow:0 2px 6px rgba(0,0,0,.06)}
 .user-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:13px;color:white;font-weight:700}
@@ -222,14 +222,14 @@ function AuthPage({ onLogin }) {
         {tab === "login" && (
           <>
             <div className="input-group">
-              <label className="input-label">👤 Username</label>
-              <input className="input-field" placeholder="Apna username likho" value={form.username}
+              <label className="input-label">👤Username</label>
+              <input className="input-field" placeholder="Enter username" value={form.username}
                 onChange={(e) => set("username", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()} />
             </div>
             <div className="input-group">
               <label className="input-label">🔒 Password</label>
-              <input className="input-field" type="password" placeholder="Apna password likho" value={form.password}
+              <input className="input-field" type="password" placeholder="Enter password" value={form.password}
                 onChange={(e) => set("password", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()} />
             </div>
@@ -262,12 +262,12 @@ function AuthPage({ onLogin }) {
             <div className="section-divider">Account Info</div>
             <div className="input-group">
               <label className="input-label">🔖 Username</label>
-              <input className="input-field" placeholder="apna username chuno" value={form.username}
+              <input className="input-field" placeholder="Set Username" value={form.username}
                 onChange={(e) => set("username", e.target.value)} />
             </div>
             <div className="input-group">
               <label className="input-label">🔒 Password</label>
-              <input className="input-field" type="password" placeholder="strong password likho" value={form.password}
+              <input className="input-field" type="password" placeholder="Set your password" value={form.password}
                 onChange={(e) => set("password", e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleRegister()} />
             </div>
