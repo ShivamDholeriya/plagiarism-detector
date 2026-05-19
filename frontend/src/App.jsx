@@ -153,7 +153,7 @@ const css = `
 
 const SCAN_MSGS = ["Extracting text...", "Building vectors...", "Computing similarity...", "Generating report..."]
 const SCAN_PCTS = [20, 45, 70, 90]
-const API = "https://plagiarism-detector-api-62d4.onrender.com"
+const API = "https://plagiarism-detector-api-62d4.onrender.com/api"
 
 // ── Auth Page ──────────────────────────────────────────────
 function AuthPage({ onLogin }) {
