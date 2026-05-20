@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Header
+from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -36,8 +37,29 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     )
     db.add(new_user)
     db.commit()
-    return {"message": "Account ban gaya! Ab login karo."}
+    return {"message": "You are registered !"}
 
+
+def get_current_user(
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+        credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials"
+    )
+
+try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+
+        user_id = payload.get("sub")
+
+        if user_id is None:
+            raise credentials_exception
+
+except JWTError:
+            raise credentials_exception
+    
 @router.post("/login")
 def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.username == user.username).first()
