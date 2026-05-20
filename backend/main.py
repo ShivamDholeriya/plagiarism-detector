@@ -1,4 +1,5 @@
 from fastapi import FastAPI,Depends
+from routes.auth import get_current_user
 from fastapi.middleware.cors import CORSMiddleware
 from routes.compare import router as compare_router
 from routes.auth import router as auth_router
@@ -28,6 +29,7 @@ app.include_router(compare_router, prefix="/api")
 @app.get("/")
 def home():
     return {"message": "Plagiarism Detector API is running!"}
+
 def get_current_user_info(current_user=Depends(get_current_user)):
     return {
         "first_name": current_user.first_name,
