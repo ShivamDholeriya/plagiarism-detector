@@ -6,11 +6,11 @@ const css = `
 .wrap{background:linear-gradient(135deg,#e0f2fe 0%,#f0f9ff 50%,#e0f2fe 100%);min-height:100vh;padding:2.5rem 1.5rem;font-family:'Inter',sans-serif;display:flex;align-items:flex-start;justify-content:center}
 .shell{width:100%;max-width:620px;padding-top:1rem}
 
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
-.brand{display:flex;align-items:center;gap:14px;}
-.brand-dot{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 18px rgba(2,132,199,.35)}
-.brand-name{font-size:25px;font-weight:bold;color:#0c4a6e;letter-spacing:-.3px;text-align:center}
-.brand-sub{font-size:13px;color:#7dd3fc;font-weight:500;margin-top:2px;text-align:center}
+.topbar{display:flex;align-items:center;justify-content:center;margin-bottom:2rem}
+.brand{display:flex;align-items:center;gap:14px;align-items: center;}
+.brand-dot{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 18px rgba(2,132,199,.35); margin: 0 auto;}
+.brand-name{font-size:30px;font-weight:bold;color:#0c4a6e;letter-spacing:-.3px;text-align: center;}
+.brand-sub{font-size:14px;color:#0486c4;font-weight:bold;margin-top:2px;text-align:center;margin-top:10px;}
 
 .nav-tabs{display:flex;gap:8px;margin-bottom:2rem;background:white;padding:6px;border-radius:14px;border:1.5px solid #bae6fd;box-shadow:0 2px 8px rgba(2,132,199,.08)}
 .nav-tab{flex:1;padding:10px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;background:transparent;color:#7dd3fc}
@@ -164,7 +164,7 @@ const css = `
 
 .auth-tabs{display:flex;background:#f0f9ff;border-radius:12px;padding:4px;margin-bottom:1.5rem}
 .auth-tab{flex:1;padding:10px;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;background:transparent;color:#7dd3fc}
-.auth-tab.active{background:white;color:#0284c7;box-shadow:0 2px 8px rgba(2,132,199,.15)}
+.auth-tab.active{background:white;color:#0284c7;box-shadow:0 2px 8px rgba(2,132,199,.15);padding: 5px 50px;}
 .input-group{margin-bottom:1rem}
 .input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
 .input-label{font-size:13px;font-weight:600;color:#0c4a6e;margin-bottom:6px;display:block}
@@ -206,8 +206,9 @@ const css = `
   display: flex;
   align-items: center;
   margin-top:-20px;
+  margin-right:20px;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 6px 25px;
   border-radius: 100px;
   border: 1.5px solid #bae6fd;
   background: white;
@@ -263,7 +264,7 @@ function AuthPage({ onLogin }) {
   }
   const handleRegister = async () => {
     if (!form.firstName || !form.lastName || !form.contact || !form.username || !form.password) {
-      setError("Saare fields bharna zaroori hai!"); return
+      setError("Fill all fields"); return
     }
     if (form.password.length < 4) { setError("Password length should be atleast 4 character"); return }
     setLoading(true); setError(""); setSuccess("")
@@ -544,7 +545,7 @@ return (
         <div className="shell">
  
           {/* Topbar */}
-          <div className="topbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div className="topbar" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div className="brand">
               <div className="brand-dot">🔍</div>
               <div>
@@ -569,19 +570,19 @@ return (
       padding: "1.25rem", minWidth: "220px", zIndex: 100,
       animation: "slideUp .2s ease"
     }}>
-      <div style={{ fontSize: "16px", fontWeight: 700, color: "#0c4a6e", marginBottom: "12px" }}>
+      <div style={{ fontSize: "20px", fontWeight: 700, color: "#1a6691", marginBottom: "12px" }}>
         👤 {localStorage.getItem("full_name") || user}
       </div>
-
+      <hr></hr><br></br>
       {[
-        { label: "First Name", icon: "🧑", val: (localStorage.getItem("full_name") || "").split(" ")[0] || "—" },
-        { label: "Last Name", icon: "🧑", val: (localStorage.getItem("full_name") || "").split(" ")[1] || "—" },
-        { label: "Contact", icon: "📱", val: localStorage.getItem("contact") || "—" },
-        { label: "Username", icon: "🔖", val: user },
+        { label: "First Name : ",val: (localStorage.getItem("full_name") || "").split(" ")[0] || "—" },
+        { label: "Last Name : ", val: (localStorage.getItem("full_name") || "").split(" ")[1] || "—" },
+        { label: "Contact :", val: localStorage.getItem("contact") || "—" },
+        { label: "Username :", val: user },
       ].map((item, i) => (
         <div key={i} style={{ borderBottom: i < 3 ? "1px solid #f0f9ff" : "none", paddingBottom: "8px", marginBottom: "8px" }}>
-          <div style={{ fontSize: "11px", color: "#bae6fd", fontWeight: 600, marginBottom: "2px" }}>{item.label}</div>
-          <div style={{ fontSize: "13px", color: "#475569", fontWeight: 500 }}>{item.icon} {item.val}</div>
+          <div style={{ fontSize: "14px", color: "#005eb0", fontWeight:"bold", marginBottom: "2px" }}>{item.label}</div>
+          <div style={{ fontSize: "14px", color: "#475569", fontWeight: "bold" }}>{item.icon} {item.val}</div>
         </div>
       ))}
 
