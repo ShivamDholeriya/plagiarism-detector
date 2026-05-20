@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Header
 from sqlalchemy.orm import Session
-from passlib.context import CryptContext
-from jose import jwt
-from datetime import datetime, timedelta
-from database import get_db, User
-from models.schemas import UserCreate, UserLogin
+from typing import List, Optional
+from jose import jwt, JWTError
+import tempfile, os
+from services.text_extractor import extract_text
+from services.similarity_engine import calculate_similarity
+from database import get_db, ComparisonHistory, User
 
 router = APIRouter()
 
