@@ -62,7 +62,7 @@ const css = `
 .result-hero{padding:2.25rem;text-align:center;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-bottom:1.5px solid #bae6fd}
 .score-wrap{position:relative;width:220px;height:220px;margin:0 auto 1.25rem}
 .score-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.score-big{font-size:46px;font-weight:800;line-height:1}
+.score-big{font-size:42px;font-weight:800;line-height:1}
 .score-tiny{font-size:14px;color:#7dd3fc;margin-top:5px;font-weight:600}
 .verdict{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:100px;font-size:15px;font-weight:700;margin-top:12px}
 .v-safe{background:#f0fdf4;color:#15803d;border:2px solid #86efac}
@@ -391,12 +391,12 @@ function DropZone({ num, file, onFile }) {
 
 // ── Score Ring ─────────────────────────────────────────────
 function ScoreRing({ score, color }) {
-  const circ = 597
+  const circ = 607
   return (
     <div className="score-wrap">
       <svg width="220" height="220" viewBox="0 0 220 220" style={{ transform: "rotate(-90deg)" }}>
-        <circle cx="110" cy="110" r="95" fill="none" stroke="#e0f2fe" strokeWidth="12" />
-        <circle cx="110" cy="110" r="95" fill="none" stroke={color} strokeWidth="12"
+        <circle cx="110" cy="110" r="96" fill="none" stroke="#e0f2fe" strokeWidth="12" />
+        <circle cx="110" cy="110" r="96" fill="none" stroke={color} strokeWidth="12"
           strokeLinecap="round" strokeDasharray={circ}
           strokeDashoffset={circ - (score / 100) * circ}
           style={{ transition: "stroke-dashoffset 1.2s ease" }} />

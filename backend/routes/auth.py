@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, Header
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from jose import jwt, JWTError
