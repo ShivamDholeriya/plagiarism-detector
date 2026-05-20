@@ -7,7 +7,7 @@ const css = `
 .shell{width:100%;max-width:620px;padding-top:1rem}
 
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem}
-.brand{display:flex;align-items:center;gap:14px;justify-content:center;width:100%;}
+.brand{display:flex;align-items:center;gap:14px;}
 .brand-dot{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 18px rgba(2,132,199,.35)}
 .brand-name{font-size:25px;font-weight:bold;color:#0c4a6e;letter-spacing:-.3px;text-align:center}
 .brand-sub{font-size:13px;color:#7dd3fc;font-weight:500;margin-top:2px;text-align:center}
@@ -16,7 +16,13 @@ const css = `
 .nav-tab{flex:1;padding:10px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;background:transparent;color:#7dd3fc}
 .nav-tab.active{background:linear-gradient(135deg,#0284c7,#0ea5e9);color:white;box-shadow:0 4px 12px rgb(0,103,220)}
 
-.steps{display:flex;align-items:center;margin-bottom:2rem}
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 350px 2rem ; /* left and right margin */
+}
+  
 .step-circle{width:34px;height:34px;border-radius:50%;border:2px solid #bae6fd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#7dd3fc;transition:all .3s;flex-shrink:0;background:white}
 .step-circle.active{border-color:#0284c7;color:#0284c7;background:#e0f2fe}
 .step-circle.done{border-color:#0284c7;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:white}
@@ -117,10 +123,45 @@ const css = `
 @media(max-width:480px){.wrap{padding:1rem 0.75rem}.shell{width:100%;max-width:100%}}
 
 .auth-wrap{background:linear-gradient(135deg,#0284c7 0%,#0ea5e9 50%,#38bdf8 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;font-family:'Inter',sans-serif}
-.auth-card{background:white;border-radius:24px;padding:2.5rem;width:100%;max-width:460px;box-shadow:0 20px 60px rgba(2,132,199,.3)}
-.auth-logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 1.25rem;box-shadow:0 6px 18px rgba(2,132,199,.4)}
-.auth-title{font-size:22px;font-weight:800;color:#0c4a6e;text-align:center;margin-bottom:4px}
-.auth-sub{font-size:13px;color:#7dd3fc;text-align:center;margin-bottom:1.75rem;font-weight:500}
+.auth-card {
+  background: white;
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 20px 60px rgba(2, 132, 199, .3);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.auth-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 1.25rem; /* 'margin: 0 auto' ની હવે જરૂર નથી */
+  box-shadow: 0 6px 18px rgba(2, 132, 199, .4);
+}
+.auth-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0c4a6e;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.auth-sub {
+  font-size: 13px;
+  color: #64748b; 
+  text-align: center;
+  margin-bottom: 1.75rem;
+  font-weight:500;
+}
+
 .auth-tabs{display:flex;background:#f0f9ff;border-radius:12px;padding:4px;margin-bottom:1.5rem}
 .auth-tab{flex:1;padding:10px;border:none;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;background:transparent;color:#7dd3fc}
 .auth-tab.active{background:white;color:#0284c7;box-shadow:0 2px 8px rgba(2,132,199,.15)}
@@ -137,12 +178,55 @@ const css = `
 .auth-err{background:#fef2f2;border:1.5px solid #fca5a5;color:#dc2626;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
 .auth-success{background:#f0fdf4;border:1.5px solid #86efac;color:#15803d;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:1rem;font-weight:500;text-align:center}
 .section-divider{font-size:12px;font-weight:700;color:#0684c6;text-transform:uppercase;letter-spacing:1px;margin:1rem 0 0.75rem;padding-bottom:6px;border-bottom:1.5px solid #e0f2fe}
-.topbar-right{display:flex;align-items:center;gap:10px;margin-left:auto}
-.user-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;border:1.5px solid #bae6fd;background:white;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-right {
+  margin-left: auto;
+  margin-top: -12px;
+  margin-bottom: 20px;  
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  margin-top:-20px;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1.5px solid #bae6fd;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+  cursor: pointer;
+}
 .user-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#0284c7,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:13px;color:white;font-weight:700}
 .user-name{font-size:13px;color:#0284c7;font-weight:600}
 .logout-btn{padding:6px 14px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:100px;font-size:12px;color:#dc2626;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:all .2s}
 .logout-btn:hover{background:#fee2e2}
+
+.profile-popup{position:absolute;top:48px;right:0;background:white;border-radius:16px;border:1.5px solid #bae6fd;box-shadow:0 8px 32px rgba(2,132,199,.15);padding:1.25rem;min-width:220px;z-index:100;animation:slideUp .2s ease}
+.profile-popup-name{font-size:16px;font-weight:700;color:#0c4a6e;margin-bottom:4px}
+.profile-popup-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f0f9ff;font-size:13px;color:#475569;font-weight:500}
+.profile-popup-row:last-of-type{border-bottom:none}
+.profile-popup-label{font-size:11px;color:#bae6fd;font-weight:600;margin-bottom:2px}
+.popup-logout-btn{width:100%;padding:10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;margin-top:12px;transition:all .2s}
+.popup-logout-btn:hover{background:#fee2e2} 
+.user-pill{cursor:pointer;position:relative}
 `
 
 const SCAN_MSGS = ["Extracting text...", "Building vectors...", "Computing similarity...", "Generating report..."]
@@ -160,7 +244,7 @@ function AuthPage({ onLogin }) {
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
   const handleLogin = async () => {
-    if (!form.username || !form.password) { setError("Username aur password dono bharo!"); return }
+    if (!form.username || !form.password) { setError("Please enter username and password"); return }
     setLoading(true); setError("")
     try {
       const res = await fetch(`${API}/auth/login`, {
@@ -172,11 +256,11 @@ function AuthPage({ onLogin }) {
       if (!res.ok) { setError(data.detail); setLoading(false); return }
       localStorage.setItem("token", data.access_token)
       localStorage.setItem("username", data.username)
+      localStorage.setItem("full_name", data.full_name || "")
       onLogin(data.username, data.access_token)
     } catch { setError("Server se connect nahi ho pa raha!") }
     setLoading(false)
   }
-
   const handleRegister = async () => {
     if (!form.firstName || !form.lastName || !form.contact || !form.username || !form.password) {
       setError("Saare fields bharna zaroori hai!"); return
@@ -197,7 +281,9 @@ function AuthPage({ onLogin }) {
       })
       const data = await res.json()
       if (!res.ok) { setError(data.detail); setLoading(false); return }
-      setSuccess("You are registred successfully please login")
+      localStorage.setItem("full_name", `${form.firstName} ${form.lastName}`)
+      localStorage.setItem("contact", form.contact)
+      setSuccess("You are registered successfully please login")
       setTab("login")
       setForm({ firstName: "", lastName: "", contact: "", username: "", password: "" })
     } catch { setError("Server se connect nahi ho pa raha!") }
@@ -400,6 +486,7 @@ function HistoryPage({ token }) {
 
 // ── Main App ───────────────────────────────────────────────
 export default function App() {
+  const [showProfile, setShowProfile] = useState(false)
   const [user, setUser] = useState(localStorage.getItem("username"))
   const [token, setToken] = useState(localStorage.getItem("token"))
   const [tab, setTab] = useState("check")
@@ -450,28 +537,64 @@ export default function App() {
 
   const sc = (n) => n < step ? "done" : n === step ? "active" : ""
 
-  return (
+return (
     <>
       <style>{css}</style>
-      <div className="wrap">
+      <div className="wrap" onClick={() => setShowProfile(false)}>
         <div className="shell">
-
-          <div className="topbar">
-            <div className="brand">
+ 
+          {/* Topbar */}
+          <div className="topbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div className="brand">
               <div className="brand-dot">🔍</div>
               <div>
                 <div className="brand-name">Plagiarism Detector</div>
                 <div className="brand-sub">AI-powered similarity check</div>
               </div>
-            </div>
-            <div className="topbar-right">
-              <div className="user-pill">
-                <div className="user-avatar">{user[0].toUpperCase()}</div>
-                <span className="user-name">{user}</span>
               </div>
-              <button className="logout-btn" onClick={handleLogout}>↩ Logout</button>
-            </div>
-          </div>
+     </div>
+{/* Topbar Right */}
+<div className="topbar-right" style={{ position: "relative" }}>
+<div className="user-pill" onClick={(e) => { e.stopPropagation(); setShowProfile(!showProfile) }}>
+    <div className="user-avatar">{user[0].toUpperCase()}</div>
+    <span className="user-name">{user} ▾</span>
+  </div>
+
+  {showProfile && (
+    <div style={{
+      position: "absolute", top: "48px", right: 0,
+      background: "white", borderRadius: "16px",
+      border: "1.5px solid #bae6fd",
+      boxShadow: "0 8px 32px rgba(2,132,199,.15)",
+      padding: "1.25rem", minWidth: "220px", zIndex: 100,
+      animation: "slideUp .2s ease"
+    }}>
+      <div style={{ fontSize: "16px", fontWeight: 700, color: "#0c4a6e", marginBottom: "12px" }}>
+        👤 {localStorage.getItem("full_name") || user}
+      </div>
+
+      {[
+        { label: "First Name", icon: "🧑", val: (localStorage.getItem("full_name") || "").split(" ")[0] || "—" },
+        { label: "Last Name", icon: "🧑", val: (localStorage.getItem("full_name") || "").split(" ")[1] || "—" },
+        { label: "Contact", icon: "📱", val: localStorage.getItem("contact") || "—" },
+        { label: "Username", icon: "🔖", val: user },
+      ].map((item, i) => (
+        <div key={i} style={{ borderBottom: i < 3 ? "1px solid #f0f9ff" : "none", paddingBottom: "8px", marginBottom: "8px" }}>
+          <div style={{ fontSize: "11px", color: "#bae6fd", fontWeight: 600, marginBottom: "2px" }}>{item.label}</div>
+          <div style={{ fontSize: "13px", color: "#475569", fontWeight: 500 }}>{item.icon} {item.val}</div>
+        </div>
+      ))}
+
+      <button onClick={handleLogout} style={{
+        width: "100%", padding: "10px",
+        background: "#fef2f2", border: "1.5px solid #fca5a5",
+        borderRadius: "10px", fontSize: "13px", color: "#dc2626",
+        cursor: "pointer", fontFamily: "Inter, sans-serif",
+        fontWeight: 600, marginTop: "4px"
+      }}>↩ Logout</button>
+    </div>
+  )}
+</div>
 
           <div className="nav-tabs">
             <button className={`nav-tab ${tab === "check" ? "active" : ""}`} onClick={() => setTab("check")}>🔍 Check Plagiarism</button>
@@ -559,6 +682,6 @@ export default function App() {
 
         </div>
       </div>
-    </>
-  )
+  </>
+)
 }
