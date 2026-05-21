@@ -206,7 +206,7 @@ const css = `
   display: flex;
   align-items: center;
   margin-top:-20px;
-  margin-right:20px;
+  margin-right:35px;
   gap: 6px;
   padding: 6px 25px;
   border-radius: 100px;
@@ -230,183 +230,190 @@ const css = `
 .user-pill{cursor:pointer;position:relative}
 
 
-/* =========================
-   MOBILE RESPONSIVE FIXES
-   ========================= */
-
 @media (max-width: 768px) {
 
-  .topbar {
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-    text-align: center;
+  .topbar{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-bottom:1.5rem;
   }
 
-  .topbar-right {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-left: 0;
+  /* USER PILL RIGHT SIDE */
+  .topbar-right{
+    position:absolute;
+    top:0;
+    right:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:0;
   }
 
-  .brand {
-    flex-direction: column;
-    gap: 10px;
+  .user-pill{
+    padding:6px 12px;
   }
 
-  .brand-name {
-    font-size: 22px;
-    line-height: 1.2;
+  .user-name{
+    font-size:12px;
   }
 
-  .brand-sub {
-    font-size: 12px;
+  .logout-btn{
+    position:absolute;
+    top:42px;
+    right:0;
+    z-index:50;
+    white-space:nowrap;
   }
 
-  .nav-tabs {
-    flex-direction: column;
-    gap: 10px;
+  /* BRAND CENTER */
+  .brand{
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    text-align:center;
   }
 
-  .steps {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+  .brand-name{
+    font-size:22px;
+    line-height:1.2;
   }
 
-  .step-label {
-    font-size: 12px;
+  .brand-sub{
+    font-size:13px;
   }
 
-  .drop-inner {
-    flex-direction: column;
-    text-align: center;
+  /* NAV TABS */
+  .nav-tabs{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
   }
 
-  .drop-title {
-    font-size: 15px;
-    word-break: break-word;
+  /* IMPORTANT FIX */
+  /* KEEP STEPS IN CENTER HORIZONTAL */
+  .steps{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    width:100%;
+    margin-bottom:1.5rem;
   }
 
-  .drop-sub {
-    font-size: 12px;
+  .step-label{
+    font-size:12px;
   }
 
-  .stats-row {
-    grid-template-columns: 1fr;
+  /* DROP AREA */
+  .drop-inner{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    text-align:left;
+    gap:14px;
   }
 
-  .files-row {
-    flex-direction: column;
-    gap: 12px;
+  .drop-area{
+    padding:1.25rem;
   }
 
-  .fchip {
-    max-width: 100%;
-    width: 100%;
+  .drop-title{
+    font-size:16px;
   }
 
+  .drop-sub{
+    font-size:12px;
+  }
+
+  /* RESULT STATS */
+  .stats-row{
+    grid-template-columns:1fr;
+  }
+
+  .files-row{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .fchip{
+    width:100%;
+    max-width:100%;
+  }
+
+  /* HISTORY */
   .history-card-top,
-  .history-card-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .history-card-bottom{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
   }
 
-  .history-badges {
-    flex-wrap: wrap;
+  /* REGISTER FORM */
+  .input-row{
+    grid-template-columns:1fr;
   }
 
-  .input-row {
-    grid-template-columns: 1fr;
+  .auth-card{
+    padding:1.5rem;
   }
 
-  .auth-card {
-    padding: 1.5rem;
-    border-radius: 18px;
+  .score-wrap{
+    width:180px;
+    height:180px;
   }
 
-  .score-wrap {
-    width: 180px;
-    height: 180px;
-  }
-
-  .score-big {
-    font-size: 38px;
-  }
-
-  .result-hero {
-    padding: 1.5rem 1rem;
+  .score-big{
+    font-size:36px;
   }
 
   .analyze-btn,
   .reset-btn,
-  .auth-btn {
-    font-size: 14px;
-    padding: 14px;
+  .auth-btn{
+    font-size:14px;
+    padding:14px;
   }
 }
 
 /* SMALL MOBILE */
 
-@media (max-width: 480px) {
+@media (max-width: 480px){
 
-  .wrap {
-    padding: 0.8rem;
+  .topbar-right{
+    right:4px;
+    top:0;
   }
 
-  .shell {
-    width: 100%;
+  .brand-name{
+    font-size:20px;
   }
 
-  .auth-card {
-    padding: 1.2rem;
+  .nav-tab{
+    font-size:13px;
   }
 
-  .brand-name {
-    font-size: 20px;
+  .drop-inner{
+    flex-direction:column;
+    text-align:center;
   }
 
-  .nav-tab {
-    font-size: 13px;
-    padding: 12px;
+  .steps{
+    transform:scale(.92);
   }
 
-  .drop-area {
-    padding: 1rem;
+  .score-wrap{
+    width:150px;
+    height:150px;
   }
 
-  .drop-ico {
-    width: 48px;
-    height: 48px;
-    font-size: 22px;
-  }
-
-  .score-wrap {
-    width: 150px;
-    height: 150px;
-  }
-
-  .score-big {
-    font-size: 30px;
-  }
-
-  .history-card {
-    padding: 1rem;
-  }
-
-  .history-score {
-    font-size: 22px;
-  }
-
-  .user-pill {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .logout-btn {
-    width: 100%;
+  .score-big{
+    font-size:30px;
   }
 }
 `
