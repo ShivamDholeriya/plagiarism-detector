@@ -9,7 +9,7 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from database import User, get_db
-from schemas import UserCreate, UserLogin
+from models.schemas import UserCreate, UserLogin
 
 router = APIRouter()
 
