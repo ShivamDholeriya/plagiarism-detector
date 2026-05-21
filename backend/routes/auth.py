@@ -106,7 +106,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     ):
         raise HTTPException(
             status_code=401,
-            detail="Username ya password galat hai"
+            detail="Invalid credentials"
         )
 
     token = create_token({

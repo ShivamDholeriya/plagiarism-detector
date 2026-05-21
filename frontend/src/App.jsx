@@ -228,6 +228,187 @@ const css = `
 .popup-logout-btn{width:100%;padding:10px;background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;font-size:13px;color:#dc2626;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;margin-top:12px;transition:all .2s}
 .popup-logout-btn:hover{background:#fee2e2} 
 .user-pill{cursor:pointer;position:relative}
+
+
+/* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .topbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .brand {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .brand-sub {
+    font-size: 12px;
+  }
+
+  .nav-tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .step-label {
+    font-size: 12px;
+  }
+
+  .drop-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .drop-title {
+    font-size: 15px;
+    word-break: break-word;
+  }
+
+  .drop-sub {
+    font-size: 12px;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .files-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fchip {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .history-card-top,
+  .history-card-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .history-badges {
+    flex-wrap: wrap;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
+  .score-wrap {
+    width: 180px;
+    height: 180px;
+  }
+
+  .score-big {
+    font-size: 38px;
+  }
+
+  .result-hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .analyze-btn,
+  .reset-btn,
+  .auth-btn {
+    font-size: 14px;
+    padding: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px) {
+
+  .wrap {
+    padding: 0.8rem;
+  }
+
+  .shell {
+    width: 100%;
+  }
+
+  .auth-card {
+    padding: 1.2rem;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .nav-tab {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .drop-area {
+    padding: 1rem;
+  }
+
+  .drop-ico {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .score-wrap {
+    width: 150px;
+    height: 150px;
+  }
+
+  .score-big {
+    font-size: 30px;
+  }
+
+  .history-card {
+    padding: 1rem;
+  }
+
+  .history-score {
+    font-size: 22px;
+  }
+
+  .user-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+}
 `
 
 const SCAN_MSGS = ["Extracting text...", "Building vectors...", "Computing similarity...", "Generating report..."]
@@ -284,7 +465,7 @@ function AuthPage({ onLogin }) {
       if (!res.ok) { setError(data.detail); setLoading(false); return }
       localStorage.setItem("full_name", `${form.firstName} ${form.lastName}`)
       localStorage.setItem("contact", form.contact)
-      setSuccess("You are registered successfully please login")
+      setSuccess("You are registered !")
       setTab("login")
       setForm({ firstName: "", lastName: "", contact: "", username: "", password: "" })
     } catch { setError("Server se connect nahi ho pa raha!") }
