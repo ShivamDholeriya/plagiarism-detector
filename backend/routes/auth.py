@@ -9,9 +9,41 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from database import User, get_db
-from models.schemas import UserCreate, UserLogin
+from models.schemas import UserCreate, UserLogin ,ForgotPassword
 
 router = APIRouter()
+
+
+@router.post("/forgot-password")
+def forgot_password(data: ForgotPassword, db: Session = Depends(get_db)):
+
+    username = data.username.strip().lower()
+    contact = data.contact.strip()
+
+    user = db.query(User).filter(
+        User.username.ilike(username)
+    ).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Username not found"
+        )
+
+    if str(user.contact).strip() != contact:
+        raise HTTPException(
+            status_code=404,
+            detail="Contact number incorrect"
+        )
+
+    password_bytes = data.new_password.encode('utf-8')[:72]
+    password_trimmed = password_bytes.decode('utf-8', errors='ignore')
+
+    user.hashed_password = pwd_context.hash(password_trimmed)
+
+    db.commit()
+
+    return {"message": "Password updated successfully"}
 
 SECRET_KEY = "plagiarism123secret"
 ALGORITHM = "HS256"
@@ -81,7 +113,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         first_name=user.first_name,
         last_name=user.last_name,
         contact=user.contact,
-        username=user.username,
+        username=user.username.lower(),
         hashed_password=hashed_password
     )
 
@@ -120,3 +152,22 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
         "username": db_user.username,
         "full_name": f"{db_user.first_name} {db_user.last_name}"
     }
+
+@router.post("/forgot-password")
+def forgot_password(data: ForgotPassword, db: Session = Depends(get_db)):
+
+    user = db.query(User).filter(
+        User.username == data.username
+    ).first()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="Username not found")
+
+    if str(user.contact) != str(data.contact):
+        raise HTTPException(status_code=404, detail="Contact incorrect")
+
+    user.hashed_password = pwd_context.hash(data.new_password)
+
+    db.commit()
+
+    return {"message": "Password updated successfully"}

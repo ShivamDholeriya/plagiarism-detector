@@ -463,8 +463,8 @@ function AuthPage({ onLogin }) {
         body: JSON.stringify({
           first_name: form.firstName,
           last_name: form.lastName,
-          contact: form.contact,
-          username: form.username,
+          contact: form.contact.trim(),
+          username: form.username.toLowerCase(),
           password: form.password
         })
       })
@@ -478,6 +478,48 @@ function AuthPage({ onLogin }) {
     } catch { setError("Server se connect nahi ho pa raha!") }
     setLoading(false)
   }
+  const handleForgotPassword = async () => {
+
+    if (!form.username || !form.contact || !form.password) {
+      setError("All fields are required!")
+      return
+    }
+
+    setLoading(true)
+    setError("")
+    setSuccess("")
+
+    try {
+
+       const res = await fetch("https://plagiarism-detector-api-62d4.onrender.com/api/auth/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: form.username.toLowerCase(),
+          contact: form.contact.trim(),
+          new_password: form.password
+        })
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.detail)
+        setLoading(false)
+        return
+      }
+
+      setSuccess("Password reset successful. Please login.")
+      setTab("login")
+
+    } catch {
+      setError("Server se connect nahi ho pa raha!")
+    }
+
+    setLoading(false)
+  }
 
   return (
     <div className="auth-wrap">
@@ -487,9 +529,11 @@ function AuthPage({ onLogin }) {
         <div className="auth-sub">AI-powered document similarity check</div>
         <div className="auth-tabs">
           <button className={`auth-tab ${tab === "login" ? "active" : ""}`}
-            onClick={() => { setTab("login"); setError(""); setSuccess("") }}>🔑 Login</button>
+            onClick={() => { setTab("login"); setError(""); setSuccess("") }}>🔑<div>Login</div></button>
           <button className={`auth-tab ${tab === "register" ? "active" : ""}`}
             onClick={() => { setTab("register"); setError(""); setSuccess("") }}>✨ Register</button>
+          <button className={`auth-tab ${tab === "forgot" ? "active" : ""}`}
+            onClick={() => { setTab("forgot"); setError(""); setSuccess("") }}>🔑 <div>Forgot</div></button>
         </div>
         {error && <div className="auth-err">❌ {error}</div>}
         {success && <div className="auth-success">✅ {success}</div>}
@@ -548,6 +592,45 @@ function AuthPage({ onLogin }) {
             </div>
             <button className="auth-btn" onClick={handleRegister} disabled={loading}>
               {loading ? "Please wait..." : " Register "}
+            </button>
+          </>
+        )}
+        {tab === "forgot" && (
+          <>
+            <div className="input-group">
+              <label className="input-label">👤 Username</label>
+              <input
+                className="input-field"
+                placeholder="Enter username"
+                value={form.username}
+                onChange={(e) => set("username", e.target.value)}
+              />
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">📱 Contact Number</label>
+              <input
+                className="input-field"
+                placeholder="Enter contact number"
+                value={form.contact}
+                onChange={(e) => set("contact", e.target.value)} />
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">🔒 New Password</label>
+              <input
+                className="input-field"
+                type="password"
+                placeholder="Enter new password"
+                value={form.password}
+                onChange={(e) => set("password", e.target.value)} />
+            </div>
+            <button
+              className="auth-btn"
+              onClick={handleForgotPassword}
+              disabled={loading}
+            >
+              {loading ? "Please wait..." : " Reset Password"}
             </button>
           </>
         )}
@@ -726,64 +809,64 @@ export default function App() {
 
   const sc = (n) => n < step ? "done" : n === step ? "active" : ""
 
-return (
+  return (
     <>
       <style>{css}</style>
       <div className="wrap" onClick={() => setShowProfile(false)}>
         <div className="shell">
- 
+
           {/* Topbar */}
           <div className="topbar" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <div className="brand">
+            <div className="brand">
               <div className="brand-dot">🔍</div>
               <div>
                 <div className="brand-name">Plagiarism Detector</div>
                 <div className="brand-sub">AI-powered similarity check</div>
               </div>
+            </div>
+          </div>
+          {/* Topbar Right */}
+          <div className="topbar-right" style={{ position: "relative" }}>
+            <div className="user-pill" onClick={(e) => { e.stopPropagation(); setShowProfile(!showProfile) }}>
+              <div className="user-avatar">{user[0].toUpperCase()}</div>
+              <span className="user-name">{user} ▾</span>
+            </div>
+
+            {showProfile && (
+              <div style={{
+                position: "absolute", top: "48px", right: 0,
+                background: "white", borderRadius: "16px",
+                border: "1.5px solid #bae6fd",
+                boxShadow: "0 8px 32px rgba(2,132,199,.15)",
+                padding: "1.25rem", minWidth: "220px", zIndex: 100,
+                animation: "slideUp .2s ease"
+              }}>
+                <div style={{ fontSize: "20px", fontWeight: 700, color: "#1a6691", marginBottom: "12px" }}>
+                  👤 {localStorage.getItem("full_name") || user}
+                </div>
+                <hr></hr><br></br>
+                {[
+                  { label: "First Name : ", val: (localStorage.getItem("full_name") || "").split(" ")[0] || "—" },
+                  { label: "Last Name : ", val: (localStorage.getItem("full_name") || "").split(" ")[1] || "—" },
+                  { label: "Contact :", val: localStorage.getItem("contact") || "—" },
+                  { label: "Username :", val: user },
+                ].map((item, i) => (
+                  <div key={i} style={{ borderBottom: i < 3 ? "1px solid #f0f9ff" : "none", paddingBottom: "8px", marginBottom: "8px" }}>
+                    <div style={{ fontSize: "14px", color: "#005eb0", fontWeight: "bold", marginBottom: "2px" }}>{item.label}</div>
+                    <div style={{ fontSize: "14px", color: "#475569", fontWeight: "bold" }}>{item.icon} {item.val}</div>
+                  </div>
+                ))}
+
+                <button onClick={handleLogout} style={{
+                  width: "100%", padding: "10px",
+                  background: "#fef2f2", border: "1.5px solid #fca5a5",
+                  borderRadius: "10px", fontSize: "13px", color: "#dc2626",
+                  cursor: "pointer", fontFamily: "Inter, sans-serif",
+                  fontWeight: 600, marginTop: "4px"
+                }}>↩ Logout</button>
               </div>
-     </div>
-{/* Topbar Right */}
-<div className="topbar-right" style={{ position: "relative" }}>
-<div className="user-pill" onClick={(e) => { e.stopPropagation(); setShowProfile(!showProfile) }}>
-    <div className="user-avatar">{user[0].toUpperCase()}</div>
-    <span className="user-name">{user} ▾</span>
-  </div>
-
-  {showProfile && (
-    <div style={{
-      position: "absolute", top: "48px", right: 0,
-      background: "white", borderRadius: "16px",
-      border: "1.5px solid #bae6fd",
-      boxShadow: "0 8px 32px rgba(2,132,199,.15)",
-      padding: "1.25rem", minWidth: "220px", zIndex: 100,
-      animation: "slideUp .2s ease"
-    }}>
-      <div style={{ fontSize: "20px", fontWeight: 700, color: "#1a6691", marginBottom: "12px" }}>
-        👤 {localStorage.getItem("full_name") || user}
-      </div>
-      <hr></hr><br></br>
-      {[
-        { label: "First Name : ",val: (localStorage.getItem("full_name") || "").split(" ")[0] || "—" },
-        { label: "Last Name : ", val: (localStorage.getItem("full_name") || "").split(" ")[1] || "—" },
-        { label: "Contact :", val: localStorage.getItem("contact") || "—" },
-        { label: "Username :", val: user },
-      ].map((item, i) => (
-        <div key={i} style={{ borderBottom: i < 3 ? "1px solid #f0f9ff" : "none", paddingBottom: "8px", marginBottom: "8px" }}>
-          <div style={{ fontSize: "14px", color: "#005eb0", fontWeight:"bold", marginBottom: "2px" }}>{item.label}</div>
-          <div style={{ fontSize: "14px", color: "#475569", fontWeight: "bold" }}>{item.icon} {item.val}</div>
-        </div>
-      ))}
-
-      <button onClick={handleLogout} style={{
-        width: "100%", padding: "10px",
-        background: "#fef2f2", border: "1.5px solid #fca5a5",
-        borderRadius: "10px", fontSize: "13px", color: "#dc2626",
-        cursor: "pointer", fontFamily: "Inter, sans-serif",
-        fontWeight: 600, marginTop: "4px"
-      }}>↩ Logout</button>
-    </div>
-  )}
-</div>
+            )}
+          </div>
 
           <div className="nav-tabs">
             <button className={`nav-tab ${tab === "check" ? "active" : ""}`} onClick={() => setTab("check")}>🔍 Check Plagiarism</button>
@@ -871,6 +954,6 @@ return (
 
         </div>
       </div>
-  </>
-)
+    </>
+  )
 }
